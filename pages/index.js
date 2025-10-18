@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const router = useRouter();
@@ -80,7 +81,12 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-center px-6">
-      <div className="max-w-2xl">
+      <motion.div 
+        className="max-w-2xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <h1 className="text-4xl font-bold mb-3 text-white">Cupacity</h1>
         <p className="text-gray-400 text-lg mb-6">
           Track and visualize your caffeine levels throughout the day.
@@ -98,7 +104,12 @@ export default function Home() {
         </button>
 
         {isMobile && showInstallPrompt && (
-          <div className="mt-8 bg-gray-800 border border-gray-700 rounded-lg p-6 max-w-sm mx-auto">
+          <motion.div 
+            className="mt-8 bg-gray-800 border border-gray-700 rounded-lg p-6 max-w-sm mx-auto"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
+          >
             <div className="text-4xl mb-3">📱</div>
             <h2 className="text-lg font-semibold text-white mb-3">
               Add Cupacity to your Home Screen
@@ -133,9 +144,9 @@ export default function Home() {
                 Continue to Calculator
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </main>
   );
 }

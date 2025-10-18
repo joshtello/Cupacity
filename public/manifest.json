@@ -1,6 +1,6 @@
 {
-  "name": "Caffeine Calculator",
-  "short_name": "CaffeineCalc",
+  "name": "Cupacity ☕",
+  "short_name": "Cupacity",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

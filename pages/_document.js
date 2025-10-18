@@ -19,7 +19,7 @@ export default function Document() {
         {/* Additional PWA meta tags */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="CaffeineCalc" />
+        <meta name="apple-mobile-web-app-title" content="Cupacity ☕" />
         
         {/* Windows Tiles */}
         <meta name="msapplication-TileColor" content="#2c3e50" />

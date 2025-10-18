@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Line } from 'react-chartjs-2'
 import Select from 'react-select'
+import { motion } from 'framer-motion'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -1681,7 +1682,12 @@ export default function CaffeineCalculator() {
         )}
         
         {chartData && (
-          <div className={`rounded-lg shadow-md p-6 mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <motion.div 
+            className={`rounded-lg shadow-md p-6 mb-8 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <h2 className={`text-xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               Caffeine Levels Over {chartHours > 24 ? '48 Hours' : '24 Hours'}
             </h2>
@@ -1862,7 +1868,7 @@ export default function CaffeineCalculator() {
                 ))}
               </div>
             )}
-          </div>
+          </motion.div>
         )}
         
         {/* Disclaimer Footer */}
