@@ -1726,11 +1726,15 @@ export default function CaffeineCalculator() {
                   plugins: {
                     title: {
                       display: true,
-                      text: chartHours > 24 ? 'Caffeine Decay Over Time - Multiple Drinks (48 Hours)' : 'Caffeine Decay Over Time - Multiple Drinks'
+                      text: chartHours > 24 ? 'Caffeine Decay Over Time - Multiple Drinks (48 Hours)' : 'Caffeine Decay Over Time - Multiple Drinks',
+                      color: isDarkMode ? '#9ca3af' : '#6b7280'
                     },
                     legend: {
                       display: true,
-                      position: 'top'
+                      position: 'top',
+                      labels: {
+                        color: isDarkMode ? '#9ca3af' : '#6b7280'
+                      }
                     },
                     tooltip: {
                       backgroundColor: (ctx) =>
@@ -1750,7 +1754,8 @@ export default function CaffeineCalculator() {
                     },
                     verticalLine: {
                       bedtime: bedtime,
-                      chartHours: chartHours
+                      chartHours: chartHours,
+                      isDarkMode: isDarkMode
                     }
                   },
                   layout: {
@@ -1761,7 +1766,16 @@ export default function CaffeineCalculator() {
                       beginAtZero: true,
                       title: {
                         display: true,
-                        text: 'Caffeine (mg)'
+                        text: 'Caffeine (mg)',
+                        color: isDarkMode ? '#9ca3af' : '#6b7280'
+                      },
+                      grid: {
+                        color: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                        drawTicks: true,
+                        drawBorder: false,
+                      },
+                      ticks: {
+                        color: isDarkMode ? '#9ca3af' : '#6b7280'
                       }
                     },
                     x: {
@@ -1769,6 +1783,7 @@ export default function CaffeineCalculator() {
                         autoSkip: false,
                         maxRotation: 45,
                         minRotation: 45,
+                        color: isDarkMode ? '#9ca3af' : '#6b7280',
                         callback: function(value, index) {
                           const label = this.getLabelForValue(value);
                           if (!label) return '';
@@ -1789,7 +1804,7 @@ export default function CaffeineCalculator() {
                           const label = ctx.tick?.label || '';
                           // Show gridline only on hourly ticks
                           if (label.includes('am') || label.includes('pm'))
-                            return 'rgba(255,255,255,0.1)';
+                            return isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
                           return 'transparent';
                         },
                         drawTicks: true,
@@ -1799,7 +1814,8 @@ export default function CaffeineCalculator() {
                         display: true,
                         text: chartHours > 24
                           ? 'Time (AM/PM, +1 indicates next day)'
-                          : 'Time (AM/PM)'
+                          : 'Time (AM/PM)',
+                        color: isDarkMode ? '#9ca3af' : '#6b7280'
                       }
                     }
                   }

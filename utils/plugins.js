@@ -5,6 +5,7 @@ export const verticalLinePlugin = {
     const { ctx, chartArea, scales } = chart
     const bedtime = chart.options.plugins?.verticalLine?.bedtime
     const chartHours = chart.options.plugins?.verticalLine?.chartHours || 24
+    const isDarkMode = chart.options.plugins?.verticalLine?.isDarkMode || false
     
     if (!bedtime || !chartArea) return
     
@@ -15,9 +16,13 @@ export const verticalLinePlugin = {
     if (bedHour < 12) bedtimeIndex += 24 * binsPerHour; // push early-morning bedtimes to +1
     const x = scales.x.getPixelForValue(bedtimeIndex)
     
+    // Dynamic colors based on theme
+    const lineColor = isDarkMode ? '#ff4d4d' : '#cc0000'
+    const labelColor = isDarkMode ? '#ff4d4d' : '#cc0000'
+    
     // Draw vertical line
     ctx.save()
-    ctx.strokeStyle = '#ef4444' // Red color
+    ctx.strokeStyle = lineColor
     ctx.lineWidth = 2
     ctx.setLineDash([5, 5]) // Dashed line
     ctx.beginPath()
@@ -26,7 +31,7 @@ export const verticalLinePlugin = {
     ctx.stroke()
     
     // Add label
-    ctx.fillStyle = '#ef4444'
+    ctx.fillStyle = labelColor
     ctx.font = '12px Arial'
     ctx.textAlign = 'center'
     ctx.fillText('Bedtime', x, chartArea.top - 10)
